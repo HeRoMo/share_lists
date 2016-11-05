@@ -33,6 +33,7 @@ gem 'puma'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'sorcery'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

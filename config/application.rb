@@ -35,5 +35,8 @@ module Myapp
     config.generators do |g|
       g.template_engine :slim
     end
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      %Q(<span class='has-error'>#{html_tag}</span>).html_safe
+    end
   end
 end

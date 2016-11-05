@@ -3,24 +3,48 @@ html
   head
     meta[charset="UTF-8"]
     title
-      | Share_list
+      | Share LIST !
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    #nav
-      - if current_user
-        = link_to 'Edit Profile', edit_user_path(current_user.id)
-        | |
-        = link_to 'Logout', :logout, method: :post
-      - else
-        = link_to "Register", new_user_path
-        | |
-        = link_to "Login", :login
-    div
-      p#notice
-        = flash[:notice]
-      p#alert
-        = flash[:alert]
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"]
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to "Share LIST !", :root, class: "navbar-brand"
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active = link_to "Login", :login
+            li
+              a[href="#about"] About
+          ul.nav.navbar-nav.navbar-right
+            - if current_user
+              li = link_to 'Edit Profile', edit_user_path(current_user.id)
+              li = link_to 'Logout', :logout, method: :post
+            - else
+              li = link_to "Register", new_user_path
+              li = link_to "Login", :login
+  .container
+    .alerts
+      - if flash[:notice]
+        #notice.alert.alert-success.alert-dismissible[role="alert"]
+          button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
+            span[aria-hidden="true"] &times;
+          = flash[:notice]
+      - if flash[:alert]
+        #alert.alert.alert-warning.alert-dismissible[role="alert"]
+          button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
+            span[aria-hidden="true"] &times;
+          = flash[:alert]
 
     = yield
+
+  footer.footer
+    .container
+      p.text-muted.text-center 2016

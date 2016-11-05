@@ -1,18 +1,22 @@
-= form_for @user do |f|
+= form_for @user, html:{class:"form-horizontal"} do |f|
   - if @user.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+    .alert.alert-danger
+      strong = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .actions = f.submit
+  .form-group
+    = f.label :email, class:"col-sm-3 control-label"
+    .col-sm-6
+      = f.text_field :email,class:"form-control"
+  .form-group
+    = f.label :password, class:"col-sm-3 control-label"
+    .col-sm-6
+      = f.password_field :password,class:"form-control"
+  .form-group
+    = f.label :password_confirmation, class:"col-sm-3 control-label"
+    .col-sm-6
+      = f.password_field :password_confirmation,class:"form-control"
+  .form-group
+    .col-sm-offset-3.col-sm-6
+      = f.submit class:"btn btn-default"

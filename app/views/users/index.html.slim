@@ -1,13 +1,19 @@
-h1 Listing users
+.page-header
+  .container
+    .row
+      .col-md-6.col-xs-6
+        h1 Users
+      .col-md-6.col-xs-6
+        h1.text-right
+          = link_to 'New User', new_user_path, class:"btn btn-default navbar-btn"
 
-table
+table.table.table-striped.table-responsive
   thead
     tr
       th Email
       th
       th
       th
-
   tbody
     - @users.each do |user|
       tr
@@ -17,5 +23,3 @@ table
         td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
-
-= link_to 'New User', new_user_path

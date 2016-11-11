@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # TODO 自分以外のユーザの情報を見れない様にすべきか？
   end
 
   # GET /users/new
@@ -21,6 +22,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if @user.id != current_user.id
+      redirect_to action: :show, id: @user.id
+    end
   end
 
   # POST /users
@@ -59,7 +63,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to :root, notice: 'User was successfully destroyed.' }
       # format.json { head :no_content }
     end
   end

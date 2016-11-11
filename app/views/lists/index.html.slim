@@ -1,0 +1,29 @@
+.page-header
+  .container
+    .row
+      .col-md-6.col-xs-6
+        h1 Lists
+      .col-md-6.col-xs-6
+        h1.text-right
+          = link_to 'New List', new_list_path, class:"btn btn-default navbar-btn"
+
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th Title
+      th Desc
+      th Rating
+      th
+      th
+  tbody
+    - @lists.each do |list|
+      tr
+        td = link_to list do
+             = list.title
+        td = list.description
+        td = list.memo
+        td = link_to edit_list_path(list) do
+              span.glyphicon.glyphicon-edit
+        td = link_to list, data: { confirm: 'Are you sure?' }, method: :delete do
+              span.glyphicon.glyphicon-trash
+

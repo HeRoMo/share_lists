@@ -1,0 +1,24 @@
+.page-header
+  .container
+    .row
+      .col-md-6.col-xs-6
+        h1 = @list.title
+      .col-md-6.col-xs-6
+        h1.text-right
+          = link_to 'Edit', edit_list_path(@list), class: "btn btn-default navbar-btn"
+          = link_to 'Delete', list_path(@list), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-default navbar-btn"
+
+.container
+  div = @list.description
+  .panel.panel-default
+    .panel-body
+      .list-group
+        - @list.item_array.each do |item|
+          p.list-group-item item
+
+  hr
+  div = @list.memo
+
+= link_to 'Edit', edit_list_path(@list)
+' |
+= link_to 'Back', lists_path

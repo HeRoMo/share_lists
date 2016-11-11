@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    # TODO 自分かAdmin以外編集不可にする
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -61,6 +62,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # TODO 自分かAdmin以外削除不可にする
     @user.destroy
     respond_to do |format|
       format.html { redirect_to :root, notice: 'User was successfully destroyed.' }

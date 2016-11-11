@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-  root to: 'users#index'
+  root to: 'lists#index'
   resources :user_sessions
   resources :users
   resources :admins, controller: :users # TODO コントローラは暫定
+  resources :lists
 
   get 'login' => 'user_sessions#new'
   post 'logout' => 'user_sessions#destroy'

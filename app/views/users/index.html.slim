@@ -20,6 +20,6 @@ table.table.table-striped.table-responsive
         td = user.email
         td = link_to 'Show', user
         td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Destroy', user_path, data: { confirm: 'Are you sure?' }, method: :delete
 
 br

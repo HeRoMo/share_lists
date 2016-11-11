@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111104819) do
+ActiveRecord::Schema.define(version: 20161111113614) do
+
+  create_table "lists", force: :cascade do |t|
+    t.string   "title",       limit: 255,   null: false
+    t.text     "items",       limit: 65535, null: false
+    t.text     "description", limit: 65535
+    t.text     "memo",        limit: 65535
+    t.integer  "owner_id",    limit: 4,     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",            limit: 255,                  null: false

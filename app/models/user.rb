@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :lists, foreign_key: :owner_id ,dependent: :destroy
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
 
   with_options on: :create do |create|
     create.validates :email, presence: true

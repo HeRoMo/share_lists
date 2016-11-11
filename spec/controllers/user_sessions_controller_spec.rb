@@ -15,13 +15,12 @@ RSpec.describe UserSessionsController, type: :controller do
     let(:email){ "whatever@whatever.com" }
     let(:password){ "secret" }
     before do
-      FactoryGirl.create(:user)
-      get :create, email: email, password: password
+      create(:user, {email:"whatever@whatever.com", password:"secret", password_confirmation:"secret"})
+      get :create, email: email, password:password
     end
 
     context "valid email and password" do
       it{ expect(response).to have_http_status(:found) }
-      # it{ expect(assigns(:user).logged_in?).to be_truthy }
     end
     context 'invalid email' do
       let(:email){'invalid@email.com'}
@@ -35,12 +34,11 @@ RSpec.describe UserSessionsController, type: :controller do
       it { expect(response).to render_template :new}
       it { expect(assigns(:user)).to be nil }
     end
-
   end
 
   describe "GET #destroy" do
     before do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       login_user(user)
     end
     it "returns http success" do

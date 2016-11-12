@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :own_the_list?, only:[:edit, :update, :destroy]
   skip_before_filter :require_login, only: [:index, :show]
 
@@ -64,15 +64,35 @@ class ListsController < ApplicationController
     end
   end
 
+  # PUT /list/:id/like
+  # PUT /list/:id/like.json
+  def like
+    @rating = rating_param[:rating] || 0
+    puts @rating
+    @list.add_fan(current_user, @rating)
+  end
+
+  # DELETE /list/:id/like
+  # DELETE /list/:id/like.json
+  def unlike
+    @list.remove_fan(current_user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
       @list = List.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render status: :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
       params.require(:list).permit(:title, :description, :items, :memo)
+    end
+
+    def rating_param
+      params.permit(:rating)
     end
 
     # 操作対象のリストのオーナーがログインユーザであることを確認

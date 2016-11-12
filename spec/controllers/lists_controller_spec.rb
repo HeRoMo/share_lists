@@ -221,4 +221,50 @@ RSpec.describe ListsController, type: :controller do
       end
     end
   end
+
+
+  describe "PUT #like" do
+    context "valid access" do
+      before do
+        user = create :user
+        @list = create :list
+        login_user user
+      end
+      subject {
+        put :like, id: @list.id, rating:1, format: :json
+      }
+      it {
+        is_expected.to have_http_status(:success)
+        expect(assigns(:rating)).to be 1
+      }
+      it {
+        expect{
+          put :like, id: @list.id, rating:1, format: :json
+        }.to change(@list.fans, :count).by(1)
+      }
+    end
+    context "list isn't exist" do
+      subject{
+        user = create :user
+        login_user user
+        put :like, id: 100, rating:1, format: :json
+      }
+      it{ is_expected.to have_http_status(:not_found)}
+    end
+  end
+
+  describe "DELETE" do
+    before do
+      user = create :user
+      @list = create :list
+      @list.add_fan(user)
+      login_user user
+    end
+    it {
+      expect{
+        put :unlike, id: @list.id, format: :json
+      }.to change(@list.fans, :count).by(-1)
+    }
+
+  end
 end

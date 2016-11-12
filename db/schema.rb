@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161112014149) do
   create_table "user_lists", force: :cascade do |t|
     t.integer  "user_id",    limit: 4,             null: false
     t.integer  "list_id",    limit: 4,             null: false
-    t.integer  "rate",       limit: 4, default: 0
+    t.integer  "rating",     limit: 4, default: 0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end

@@ -3,7 +3,7 @@ class CreateUserLists < ActiveRecord::Migration
     create_table :user_lists do |t|
       t.integer :user_id, null:false
       t.integer :list_id, null:false
-      t.integer :rate, { default: 0}
+      t.integer :rating, default: 0
 
       t.timestamps null: false
     end

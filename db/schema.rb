@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111113614) do
+ActiveRecord::Schema.define(version: 20161112014149) do
 
   create_table "lists", force: :cascade do |t|
     t.string   "title",       limit: 255,   null: false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20161111113614) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "user_lists", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4,             null: false
+    t.integer  "list_id",    limit: 4,             null: false
+    t.integer  "rate",       limit: 4, default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "user_lists", ["user_id", "list_id"], name: "index_user_lists_on_user_id_and_list_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",            limit: 255,                  null: false

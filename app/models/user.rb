@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
   has_many :lists, foreign_key: :owner_id ,dependent: :destroy
+  has_many :user_lists,dependent: :destroy
+  has_many :favorite_lists, through: :user_lists
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

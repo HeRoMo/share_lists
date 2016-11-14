@@ -1,3 +1,14 @@
 // Place all the styles related to the lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.like,.unlike.yes{
+  display: inline-block;
+}
+.like.yes,.unlike{
+  display: none;
+}
+
+form#unlike input[type=submit]:hover {
+  color:red;
+}
+

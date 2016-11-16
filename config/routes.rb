@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       delete :like, action: :unlike
     end
   end
+  resource :mypage, controller: :mypage, only:[:show]
 
   get 'login' => 'user_sessions#new'
   post 'logout' => 'user_sessions#destroy'

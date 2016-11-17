@@ -1,0 +1,25 @@
+.page-header
+  .container
+    .row
+      .col-md-6.col-xs-6
+        h1 Users
+      .col-md-6.col-xs-6
+
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th Email
+      th Type
+      th.control
+  tbody
+    - @users.each do |user|
+      tr
+        td = link_to user_url(user) do
+             = user.email
+        td = user.type
+        td.control
+          = link_to edit_user_path(user) do
+            span.glyphicon.glyphicon-edit
+          = link_to user_path(user), data: { confirm: 'Are you sure?' }, method: :delete do
+            span.glyphicon.glyphicon-trash
+

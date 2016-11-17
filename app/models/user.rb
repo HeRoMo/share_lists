@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
 
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+
+  def admin?
+    type == Admin::Type
+  end
 end

@@ -23,6 +23,8 @@ html
             li = link_to "Lists", lists_url
             - if current_user
               li = link_to("My Page", mypage_url)
+            - if current_user && current_user.type == Admin::Type
+              li = link_to("Users", admin_users_url)
             li
               a[href="#about"] About
           ul.nav.navbar-nav.navbar-right

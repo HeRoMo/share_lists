@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: 'lists#index'
   resources :user_sessions, only:[:new,:create,:destroy]
   resources :users,:constraints => {:id  => /[0-9]+/ }
-  resources :admins, controller: :users # TODO コントローラは暫定
   resources :lists,:constraints => {:id  => /[0-9]+/ } do
     member do
       put :like
@@ -14,6 +13,10 @@ Rails.application.routes.draw do
 
   get 'login' => 'user_sessions#new'
   post 'logout' => 'user_sessions#destroy'
+
+  namespace :admin do
+    resources :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

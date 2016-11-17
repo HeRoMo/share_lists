@@ -3,33 +3,6 @@ include Sorcery::TestHelpers::Rails::Controller
 
 describe UsersController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # User. As you add validations to User, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # UsersController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET #index" do
-    before do
-      @user = create(:user)
-      get :index
-    end
-    context 'not logined access' do
-      it { expect(assigns(:users)).not_to be nil }
-      it { expect(assigns(:users)).to eq([@user]) }
-    end
-  end
-
   describe "GET #show" do
     context 'access to self ' do
       let(:id){ @user.id }
@@ -86,6 +59,17 @@ describe UsersController, type: :controller do
       get :edit, id: other.id
       expect(response).to redirect_to(action: :show, id: other.id)
     end
+    context 'acceass to other user by admin' do
+      before do
+        admin = create(:admin)
+        @user = create(:user)
+        login_user admin
+        get :edit, id: @user.id
+      end
+      it { expect(assigns(:user)).to eq(@user) }
+      it { expect(response).to have_http_status(:success)}
+    end
+
   end
 
   describe "POST #create" do
@@ -134,12 +118,12 @@ describe UsersController, type: :controller do
   end
 
   describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        {email: 'new@email.com',
-         password: 'new_password',
-         password_confirmation: 'new_password'}
-      }
+    let(:new_attributes) {
+      {email: 'new@email.com',
+       password: 'new_password',
+       password_confirmation: 'new_password'}
+    }
+    context "with valid params by user self" do
       before do
         @user = create(:user)
         login_user @user
@@ -157,6 +141,27 @@ describe UsersController, type: :controller do
 
       it "redirects to the user" do
         expect(response).to redirect_to(@user)
+      end
+    end
+
+    context "with valid params by admin self" do
+      before do
+        @admin = create(:admin)
+        login_user @admin
+        put :update, id: @admin.id, admin: new_attributes
+      end
+
+      it "updates the requested user" do
+        @admin.reload
+        expect(@admin.crypted_password).not_to eq Sorcery::CryptoProviders::BCrypt.encrypt("new_password", @admin.salt)
+      end
+
+      it "assigns the requested user as @user" do
+        expect(assigns(:user)).to eq(@admin)
+      end
+
+      it "redirects to the user" do
+        expect(response).to redirect_to user_path(@admin)
       end
     end
 
@@ -180,6 +185,28 @@ describe UsersController, type: :controller do
       end
     end
 
+    context 'update user by admin' do
+      before do
+        @admin = create(:admin)
+        @user = create(:user)
+        login_user @admin
+        put :update, id: @user.id, user: new_attributes
+      end
+      it {expect(response).to redirect_to(user_path @user)}
+      it {expect(assigns(:user).email).to eq new_attributes[:email]}
+    end
+
+    context 'update other user by normal user' do
+      before do
+        @login_user = create(:user)
+        @target_user = create(:user)
+        login_user @login_user
+        put :update, id: @target_user.id, user: new_attributes
+      end
+      it {expect(response).to redirect_to root_path}
+      it {expect(assigns(:user).email).not_to eq new_attributes[:email]}
+    end
+
     it 'duplicate email address' do
       user1 = create(:user, email: 'user1@email.com')
       user2 = create(:user, email: 'user2@email.com')
@@ -198,11 +225,32 @@ describe UsersController, type: :controller do
       }.to change(User, :count).by(-1)
     end
 
-    it "redirects to the users list" do
+    it "redirects to root" do
       user = create :user
       login_user user
       delete :destroy, id: user.id
       expect(response).to redirect_to(root_url)
+    end
+    context 'delete other user by admin' do
+      before do
+        admin = create(:admin)
+        @user = create(:user)
+        login_user admin
+        delete :destroy, id: @user.id
+      end
+      it {expect(response).to redirect_to admin_user_path}
+      it {expect(User.find_by(id:@user.id)).to be nil}
+    end
+
+    context 'delete other user by normal user' do
+      before do
+        login_user = create(:user)
+        @target_user = create(:user)
+        login_user login_user
+        delete :destroy, id: @target_user.id
+      end
+      it {expect(response).to redirect_to root_url}
+      it {expect(@target_user.reload).not_to be nil}
     end
   end
 

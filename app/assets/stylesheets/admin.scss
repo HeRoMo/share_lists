@@ -1,0 +1,11 @@
+.control {
+  width: 100px;
+  text-align: right;
+  span {
+    width: 25px;
+    font-size: large;
+  }
+  span:hover {
+    color: blue;
+  }
+}

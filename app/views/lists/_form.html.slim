@@ -1,4 +1,4 @@
-= form_for @list, html:{class:"form-horizontal"} do |f|
+= form_for @list, html:{class:'list-form' } do |f|
   - if @list.errors.any?
     .alert.alert-danger
     #error_explanation
@@ -8,21 +8,17 @@
           li = message
 
   .form-group
-    = f.label :title, class:"col-sm-3 control-label"
-    .col-sm-6
-      = f.text_field :title, class: "form-control"
+    = f.label :title, class:"control-label"
+    = f.text_field :title, class: "form-control"
   .form-group
-    = f.label :description, class: "col-sm-3 control-label"
-    .col-sm-6
-      = f.text_area :description, class: "form-control"
+    = f.label :description, class: "control-label"
+    = f.text_area :description, class: "form-control", rows:5
   .form-group
-    = f.label :items, class: "col-sm-3 control-label"
-    .col-sm-6
-      = f.text_area :items, class: "form-control"
+    = f.label :items, class: "control-label"
+    = f.text_area :items, class: "form-control", rows:15
   .form-group
-    = f.label :memo, class: "col-sm-3 control-label"
-    .col-sm-6
-      = f.text_area :memo, class: "form-control"
+    = f.label :memo, class: "control-label"
+    = f.text_area :memo, class: "form-control", rows:5
   .form-group
-    .col-sm-offset-3.col-sm-6
-      = f.submit class: "btn btn-default"
+    = f.submit class: "btn btn-default"
+    = link_to 'Cancel', _back_url, class: "btn btn-default"

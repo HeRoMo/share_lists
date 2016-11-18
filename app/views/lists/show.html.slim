@@ -20,16 +20,16 @@
           = form_tag({controller: :lists, action: :like}, remote: true, method: :delete, id: :unlike, class: "unlike #{like}")
             = button_tag('お気に入り済', class: "btn btn-default")
 .container
-  div = @list.description
-  .panel.panel-default
-    .panel-body
-      .list-group
-        - @list.item_array.each do |item|
-          p.list-group-item item
+  .list-desc = simple_format(h(@list.description))
+  .list-items
+    .panel.panel-default
+      .panel-body
+        .list-group
+          - @list.item_array.each do |item|
+            p.list-group-item  = item
 
   hr
-  div = @list.memo
+  .list-memo = simple_format(h(@list.memo))
 
-= link_to 'Edit', edit_list_path(@list)
-' |
-= link_to 'Back', lists_path
+  div
+    = link_to 'Back', lists_path, class: "btn btn-default"

@@ -48,6 +48,8 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+
+  gem 'i18n_generators'
 end
 
 group :development do

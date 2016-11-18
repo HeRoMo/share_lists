@@ -1,0 +1,38 @@
+en:
+  activerecord:
+    models:
+      admin: Admin  #g
+      list: List  #g
+      user: User  #g
+      user_list: User list  #g
+
+    attributes:
+      admin:
+        crypted_password: Crypted password  #g
+        email: Email  #g
+        favorite_lists: Favorite lists  #g
+        lists: Lists  #g
+        salt: Salt  #g
+        user_lists: User lists  #g
+
+      list:
+        description: Description  #g
+        fans: Fans  #g
+        items: Items  #g
+        memo: Memo  #g
+        owner: :activerecord.models.owner  #g
+        title: Title  #g
+        user_lists: User lists  #g
+
+      user:
+        crypted_password: Crypted password  #g
+        email: Email  #g
+        favorite_lists: Favorite lists  #g
+        lists: Lists  #g
+        salt: Salt  #g
+        user_lists: User lists  #g
+
+      user_list:
+        list: :activerecord.models.list  #g
+        rating: Rating  #g
+        user: :activerecord.models.user  #g

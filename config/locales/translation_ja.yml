@@ -1,0 +1,38 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者  #g
+      list: リスト  #g
+      user: ユーザー  #g
+      user_list: ユーザーリスト  #g
+
+    attributes:
+      admin:
+        crypted_password: 暗号化されたパスワード  #g
+        email: Eメール  #g
+        favorite_lists: お気に入りリスト  #g
+        lists: リスト  #g
+        salt: 塩  #g
+        user_lists: ユーザーリスト  #g
+
+      list:
+        description: 説明  #g
+        fans: ファン  #g
+        items: アイテム  #g
+        memo: メモ  #g
+        owner: :activerecord.models.owner  #g
+        title: タイトル  #g
+        user_lists: ユーザーリスト  #g
+
+      user:
+        crypted_password: 暗号化されたパスワード  #g
+        email: Eメール  #g
+        favorite_lists: お気に入りリスト  #g
+        lists: リスト  #g
+        salt: 塩  #g
+        user_lists: ユーザーリスト  #g
+
+      user_list:
+        list: :activerecord.models.list  #g
+        rating: 評価  #g
+        user: :activerecord.models.user  #g

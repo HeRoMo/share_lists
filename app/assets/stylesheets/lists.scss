@@ -12,16 +12,37 @@ form#unlike input[type=submit]:hover {
   color:red;
 }
 
-td.title {
-  font-weight: bold;
+.lists-table {
+  td.star {
+    font-size: large;
+    font-weight: bold;
+    color: gold;
+    width: 10px;
+  }
+
+  td.title {
+    font-weight: bold;
+    min-width: 300px;
+  }
+
+  td.desc {
+
+  }
+  td {
+    .desc.digest {
+      overflow: hidden;
+      text-overflow:ellipsis;
+      height: 38px;
+    }
+  }
+
+  td.control {
+    a {
+      display: inline-block;
+    }
+  }
 }
 
-.star {
-  font-size: large;
-  font-weight: bold;
-  color: gold;
-  width: 10px;
-}
 
 form.list-form {
 

@@ -13,14 +13,35 @@
         = t('view.mypage.own_list')
   .tab-content
     #favorite.tab-pane.active[role="tabpanel"]
-      table.table.table-striped.table-responsive
+      table.table.table-striped.table-responsive.lists-table
         tbody
           - @favorite_lists.each do |list|
             tr
-              td = list.title
+              td.owner
+                = link_to user_path(list.owner) do
+                  = gravator_icon(list.owner, size: 20, class:'gravator-icon', alt:'icon')
+              td.title
+                = link_to list_path(list) do
+                  = list.title
+              td.desc = list.description
+              td.control
+
     #own.tab-pane[role='tabpanel']
-      table.table.table-striped.table-responsive
+      table.table.table-striped.table-responsive.lists-table
         tbody
           - @own_lists.each do |list|
             tr
-              td = list.title
+              td.owner
+                = link_to user_path(list.owner) do
+                  = gravator_icon(list.owner, size: 20, class:'gravator-icon', alt:'icon')
+              td.title
+                = link_to list_path(list) do
+                  = list.title
+              td.desc = list.description
+              td.control
+                - if list.owner == current_user
+                  = link_to edit_list_path(list) do
+                    span.glyphicon.glyphicon-edit
+                - if list.owner == current_user
+                  = link_to list, data: {confirm: 'Are you sure?'}, method: :delete do
+                    span.glyphicon.glyphicon-trash

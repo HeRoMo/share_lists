@@ -6,9 +6,11 @@
 .container
   ul.nav.nav-justified.nav-tabs[role="tablist"]
     li.active[role="presentation"]
-      a[href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab"] Favorite
+      a[href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab"]
+        = t('view.mypage.favorlite_list')
     li[role="presentation"]
-      a[href="#own" aria-controls="own" role="tab" data-toggle="tab"] own
+      a[href="#own" aria-controls="own" role="tab" data-toggle="tab"]
+        = t('view.mypage.own_list')
   .tab-content
     #favorite.tab-pane.active[role="tabpanel"]
       table.table.table-striped.table-responsive

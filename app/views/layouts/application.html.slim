@@ -3,7 +3,7 @@ html
   head
     meta[charset="UTF-8"]
     title
-      | Share LIST !
+      = t('application.name')
     meta[name="viewport" content="width=device-width, initial-scale=1"]
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -17,23 +17,23 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to "Share LIST !", :root, class: "navbar-brand"
+          = link_to t('application.name'), :root, class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li = link_to "Lists", lists_url
+            li = link_to t('application.list'), lists_url
             - if current_user
-              li = link_to("My Page", mypage_url)
+              li = link_to(t('application.mypage'), mypage_url)
             - if current_user && current_user.type == Admin::Type
-              li = link_to("Users", admin_users_url)
+              li = link_to(t('application.user'), admin_users_url)
             li
               a[href="#about"] About
           ul.nav.navbar-nav.navbar-right
             - if current_user
-              li = link_to 'Edit Profile', edit_user_path(current_user.id)
-              li = link_to 'Logout', :logout, method: :post
+              li = link_to t('view.user.profile'), edit_user_path(current_user.id)
+              li = link_to t('view.user.logout'), :logout, method: :post
             - else
-              li = link_to "Register", new_user_path
-              li = link_to "Login", :login
+              li = link_to t("view.user.register"), new_user_path
+              li = link_to t("view.user.login"), :login
   .container
     .alerts
       - if flash[:notice]

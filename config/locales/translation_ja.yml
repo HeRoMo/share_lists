@@ -16,7 +16,7 @@ ja:
         user_lists: ユーザーリスト  #g
 
       list:
-        description: 説明  #g
+        description: 概要  #g
         fans: ファン  #g
         items: アイテム  #g
         memo: メモ  #g
@@ -36,3 +36,33 @@ ja:
         list: :activerecord.models.list  #g
         rating: 評価  #g
         user: :activerecord.models.user  #g
+
+  application:
+    name: Share LIST!
+    list: Lists
+    user: Users
+    mypage: MyPage
+
+  view:
+    buttons:
+      new: 新規登録
+      edit: 編集
+      update: 更新
+      back: 戻る
+
+    user:
+      login: ログイン
+      logout: ログアウト
+      register: ユーザ登録
+      profile: プロファイル編集
+
+    list:
+      new: 新規リスト
+      edit: リストを編集
+      delete: リストを削除
+      like: お気に入りに追加
+      unlike: お気に入り済
+
+    mypage:
+      favorlite_list: お気に入りリスト
+      own_list: マイリスト

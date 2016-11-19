@@ -36,3 +36,33 @@ en:
         list: :activerecord.models.list  #g
         rating: Rating  #g
         user: :activerecord.models.user  #g
+
+  application:
+    name: Share LIST!
+    list: Lists
+    user: Users
+    mypage: MyPage
+
+  view:
+    buttons:
+      new: New
+      edit: Edit
+      update: Update
+      back: Back
+
+    user:
+      login: Login
+      logout: Logout
+      register: Register
+      profile: Edit Profile
+
+    list:
+      new: New List
+      edit: Edit List
+      delete: Delete List
+      like: Like!
+      unlike: Unlike
+
+    mypage:
+      favorlite_list: Favorite Lists
+      own_list: My Lists

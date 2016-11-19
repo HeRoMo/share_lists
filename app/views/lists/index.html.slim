@@ -2,18 +2,18 @@
   .container
     .row
       .col-md-6.col-xs-6
-        h1 Lists
+        h1 = t('activerecord.models.list')
       .col-md-6.col-xs-6
         h1.text-right
-          = link_to 'New List', new_list_path, class:"btn btn-default navbar-btn"
+          = link_to t('view.list.new'), new_list_path, class:"btn btn-default navbar-btn"
 
 table.table.table-striped.table-responsive
   thead
     tr
       th.star
-      th.title Title
-      th.desc Desc
-      th Memo
+      th.title = t('activerecord.attributes.list.title')
+      th.desc = t('activerecord.attributes.list.description')
+      th = t('activerecord.attributes.list.memo')
       th
       th
   tbody

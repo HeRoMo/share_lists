@@ -8,6 +8,8 @@ class List < ActiveRecord::Base
   validates :items, presence: true
   validates :owner, presence: true
 
+  default_scope -> { includes(:owner) }
+
   # items の値をリストで取得する
   # 改行コード区切りでリスト化された値を得る
   # @return [Array] item [String] のリスト

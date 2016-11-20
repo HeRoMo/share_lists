@@ -6,7 +6,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all.order(:created_at).reverse_order
+    @lists = List.all.includes(:fans).order(:created_at, :id).reverse_order
   end
 
   # GET /lists/1

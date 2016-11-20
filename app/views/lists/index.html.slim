@@ -5,9 +5,11 @@
         h1 = t('activerecord.models.list')
       .col-md-6.col-xs-6
         h1.text-right
-          = link_to t('view.list.new'), new_list_path, class:"btn btn-default navbar-btn"
+          = link_to t('views.list.new'), new_list_path, class:"btn btn-default navbar-btn"
 
 .container-fluid
+  .row
+    = page_entries_info @lists
   .row
     - @lists.each do |list|
       .col-xs-12.col-sm-6.col-md-4.col-lg-3
@@ -20,3 +22,5 @@
               span.star.glyphicon.glyphicon-star-empty
             = list.title
           .desc = list.description
+  .row
+    = paginate @lists

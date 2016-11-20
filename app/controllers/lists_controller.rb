@@ -3,10 +3,13 @@ class ListsController < ApplicationController
   before_action :own_the_list?, only:[:edit, :update, :destroy]
   skip_before_filter :require_login, only: [:index, :show]
 
+  LISTS_PAGE_SIZE = 24
+
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all.includes(:fans).order(:created_at, :id).reverse_order
+    @lists = List.includes(:fans).order(:created_at, :id).reverse_order
+                 .page(params[:page]).per(LISTS_PAGE_SIZE)
   end
 
   # GET /lists/1

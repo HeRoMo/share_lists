@@ -8,10 +8,10 @@
           h1.text-right
             = link_to(edit_list_path(@list), class: "btn btn-default navbar-btn") do
               span.glyphicon.glyphicon-edit
-              = t('view.list.edit')
+              = t('views.list.edit')
             = link_to(list_path(@list), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-default navbar-btn") do
               span.glyphicon.glyphicon-trash
-              = t('view.list.delete')
+              = t('views.list.delete')
     .row.owner
       .col-md-6.col-xs-6
         = gravator_icon(@list.owner, size:50, class:"gravator-icon", alt:"owner")
@@ -21,10 +21,10 @@
           - like = @list.fan?(current_user)? 'yes':''
           = form_tag({controller: :lists, action: :like}, remote:true, method: :put, id: :like, class: "like #{like}")
             = button_tag(class:"btn btn-default") do
-              = t('view.list.like')
+              = t('views.list.like')
           = form_tag({controller: :lists, action: :like}, remote: true, method: :delete, id: :unlike, class: "unlike #{like}")
             = button_tag(class: "btn btn-default") do
-              = t('view.list.unlike')
+              = t('views.list.unlike')
 .container
   .list
     .desc
@@ -41,4 +41,4 @@
       div = simple_format(h(@list.memo))
 
   div
-    = link_to t('view.buttons.back'), :back, class: "btn btn-default"
+    = link_to t('views.buttons.back'), :back, class: "btn btn-default"

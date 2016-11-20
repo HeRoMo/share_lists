@@ -43,7 +43,7 @@ ja:
     user: Users
     mypage: MyPage
 
-  view:
+  views:
     buttons:
       new: 新規登録
       edit: 編集
@@ -66,3 +66,10 @@ ja:
     mypage:
       favorlite_list: お気に入りリスト
       own_list: マイリスト
+
+    pagination:
+      first: 最初のページ
+      last: 最後のページ
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: …

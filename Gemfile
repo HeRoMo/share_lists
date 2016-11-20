@@ -35,6 +35,8 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'sorcery','0.9.0'
 
+gem 'kaminari', git: 'git://github.com/amatsuda/kaminari', branch: 'master'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -29,11 +29,11 @@ html
               a[href="#about"] About
           ul.nav.navbar-nav.navbar-right
             - if current_user
-              li = link_to t('view.user.profile'), edit_user_path(current_user.id)
-              li = link_to t('view.user.logout'), :logout, method: :post
+              li = link_to t('views.user.profile'), edit_user_path(current_user.id)
+              li = link_to t('views.user.logout'), :logout, method: :post
             - else
-              li = link_to t("view.user.register"), new_user_path
-              li = link_to t("view.user.login"), :login
+              li = link_to t("views.user.register"), new_user_path
+              li = link_to t("views.user.login"), :login
   .container
     .alerts
       - if flash[:notice]

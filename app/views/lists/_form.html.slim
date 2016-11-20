@@ -15,6 +15,8 @@
     = f.text_area :description, class: "form-control", rows:5
   .form-group
     = f.label :items, class: "control-label"
+      span = t('activerecord.attributes.list.items')
+      span.notice = t('activerecord.attributes.list.items_notice')
     = f.text_area :items, class: "form-control", rows:15
   .form-group
     = f.label :memo, class: "control-label"

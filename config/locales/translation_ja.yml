@@ -18,7 +18,8 @@ ja:
       list:
         description: 概要  #g
         fans: ファン  #g
-        items: アイテム  #g
+        items: リスト  #g
+        items_notice: （一項目一行で書き込んください）
         memo: メモ  #g
         owner: :activerecord.models.owner  #g
         title: タイトル  #g

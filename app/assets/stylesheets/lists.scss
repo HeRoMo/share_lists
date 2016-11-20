@@ -8,6 +8,11 @@
   display: none;
 }
 
+label span.notice {
+  font-weight: normal;
+  padding-left: 10px;
+}
+
 .list {
   margin: 0 0 10px 0;
   .desc {
@@ -26,9 +31,6 @@
       line-height: 1.3em;
       margin-bottom: 5px;
     }
-    //li:before {
-    //  content: '<span class".glyphicon glyphicon-star"></span>';
-    //}
   }
   .memo {
     width: 95%;

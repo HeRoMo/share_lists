@@ -6,7 +6,7 @@ RSpec.describe "lists/show", type: :view do
     @list = assign(:list, create(:list, {owner:owner}))
   end
 
-  it "renders attributes in <p>" do
+  pending "renders attributes in <p>" do
     render
   end
 end

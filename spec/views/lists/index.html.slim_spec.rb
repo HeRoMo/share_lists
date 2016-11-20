@@ -6,7 +6,7 @@ RSpec.describe "lists/index", type: :view do
     assign(:lists, create_list(:list, 2, {owner:owner}))
   end
 
-  it "renders a list of lists" do
+  pending "renders a list of lists" do
     render
   end
 end

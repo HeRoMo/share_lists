@@ -8,6 +8,47 @@
   display: none;
 }
 
+.list {
+  margin: 0 0 10px 0;
+  .desc {
+    min-height: 30px;
+    padding: 5px 5px 5px 5px;
+    font-size: larger;
+  }
+  .items {
+    margin: 10px auto 10px auto;
+    padding: 0 5px 0 5px;
+    ul{
+      list-style-position: outside;
+    }
+    li {
+      font-size: large;
+      line-height: 1.3em;
+      margin-bottom: 5px;
+    }
+    //li:before {
+    //  content: '<span class".glyphicon glyphicon-star"></span>';
+    //}
+  }
+  .memo {
+    width: 95%;
+    margin: 0 auto 0 auto;
+    padding: 10px;
+    min-height: 30px;
+    border-radius: 5px;
+    font-size: larger;
+  }
+
+  .desc,.memo {
+    .lbl {
+      font-size: smaller;
+      color:black;
+      font-weight: bold;
+    }
+  }
+}
+
+
 form#unlike input[type=submit]:hover {
   color:red;
 }

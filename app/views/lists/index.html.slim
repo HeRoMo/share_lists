@@ -7,31 +7,16 @@
         h1.text-right
           = link_to t('view.list.new'), new_list_path, class:"btn btn-default navbar-btn"
 
-table.table.table-striped.table-responsive.lists-table
-  thead
-    tr
-      th.star
-      th.owner
-      th.title = t('activerecord.attributes.list.title')
-      th.desc = t('activerecord.attributes.list.description')
-      th.control
-  tbody
+.container-fluid
+  .row
     - @lists.each do |list|
-      tr
-        td.star
-          - if list.fan? current_user
-            span.glyphicon.glyphicon-star
-          - else
-            span.glyphicon.glyphicon-star-empty
-        td.owner
-          = link_to user_path(list.owner) do
+      .col-xs-12.col-sm-6.col-md-4.col-lg-3
+        = link_to(list, class:'lists') do
+          .title
             = gravator_icon(list.owner,size:20, class:'gravator-icon', alt:'icon')
-        td.title = link_to list do
-          = list.title
-        td
-          .desc.digest = list.description
-        td.control
-          = link_to edit_list_path(list) do
-            span.glyphicon.glyphicon-edit
-          = link_to list, data: { confirm: 'Are you sure?' }, method: :delete do
-            span.glyphicon.glyphicon-trash
+            - if list.fan? current_user
+              span.star.glyphicon.glyphicon-star
+            - else
+              span.star.glyphicon.glyphicon-star-empty
+            = list.title
+          .desc = list.description

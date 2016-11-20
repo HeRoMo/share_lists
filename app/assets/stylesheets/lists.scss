@@ -53,38 +53,37 @@ form#unlike input[type=submit]:hover {
   color:red;
 }
 
-.lists-table {
-  td.star {
-    font-size: large;
+.lists {
+  display: block;
+  border: solid 1px gray;
+  border-radius: 3px;
+  padding: 3px 5px 3px 5px;
+  margin: 3px -12px 3px -12px;
+  height: 100px;
+  overflow: hidden;
+  &:hover{
+    text-decoration: none;
+    background-color: lightgrey;
+    color: black;
+  }
+
+  .title {
+    font-size: larger;
     font-weight: bold;
-    color: gold;
-    width: 10px;
-  }
+    line-height: 30px;
 
-  td.title {
-    font-weight: bold;
-    min-width: 300px;
-  }
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 2px;
 
-  td.desc {
-
-  }
-  td {
-    .desc.digest {
-      overflow: hidden;
-      text-overflow:ellipsis;
-      height: 38px;
+    .star {
+      color: gold;
+      font-weight: bold;
     }
   }
 
-  td.control {
-    a {
-      display: inline-block;
-    }
+  .desc {
+    height: 65px;
   }
-}
-
-
-form.list-form {
-
 }

@@ -1,28 +1,32 @@
-== README
+# Shere LIST
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple LIST sharing application.
 
-Things you may want to cover:
+## Getting start
 
-* Ruby version
+At first, build and up docker containers.
 
-* System dependencies
+```bash
+$ docker-compose build
+$ docker-compose up
+```
 
-* Configuration
+Initialize database in other terminal
 
-* Database creation
+```bash
+$ docker-compose exec web rake db:create
+$ docker-compose exec web rake db:migrate
+$ docker-compose exec web rake db:seed  # to create sample data.
+```
 
-* Database initialization
+And access to `http://localhost:3000/`
 
-* How to run the test suite
+## Sample data
 
-* Services (job queues, cache servers, search engines, etc.)
+There are to users in Sample data.
 
-* Deployment instructions
+- admin@email.com : Admin user.
+- first@email.com : Normal user.
 
-* ...
+The password of these user is 'password'.
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
